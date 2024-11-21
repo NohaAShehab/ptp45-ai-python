@@ -66,16 +66,50 @@
 
 
 
-l = [32,324]
-l.append("abc")
-# list class inherits from class object ??
+# l = [32,324]
+# l.append("abc")
+# # list class inherits from class object ??
+#
+#
+# class Course:
+#     pass
+#
+# c = Course()
+# print(c.__dict__)
+#
+#
+#
+# print(len(l))
+# print(len(c))
 
-
+###############################################
 class Course:
-    pass
+    no_of_objects = 0
 
-c = Course()
-print(c.__dict__)
+    def __init__(self, name, description):
+        self.name = name
+        self.description = description
+        Course.no_of_objects += 1
+
+    def __del__(self):
+        self.__class__.no_of_objects -= 1
+        print("Course object is being deleted")
+
+
+c = Course("abc", 'abc course')
+print("--- hiii")
+c2=  Course("abc", 'abc course')
+c3= Course("abc", 'abc course')
+del c2
+print(Course.no_of_objects)
+
+print("byeeeeeeeeeeeeeeeeeee")
+
+
+
+
+
+
 
 
 
